@@ -9,7 +9,10 @@ body {
   text-align: center;
 }
 
-.App h1 {
-  font-size: 3.75rem;
+.app-title {
+  margin: 2rem;
+  font-size: 8rem;
+  color: #d1d1d1;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
   font-family: "Bigelow Rules", cursive;
 }
