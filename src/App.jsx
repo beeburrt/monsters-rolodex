@@ -8,6 +8,7 @@ class App extends Component {
 
     this.state = {
       monsters: [],
+      searchField: "",
     };
     console.log("constructor");
   }
@@ -28,8 +29,23 @@ class App extends Component {
       );
   }
 
+  onSearchChange = (evt) => {
+    const searchField = evt.target.value.toLocaleLowerCase();
+    this.setState(() => {
+      return { searchField };
+    });
+  };
+
   render() {
     console.log("render");
+
+    const { monsters, searchField } = this.state;
+    const { onSearchChange } = this;
+
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchField);
+    });
+
     return (
       <div className="App">
         <h1>Monsters Rolodex</h1>
@@ -37,11 +53,9 @@ class App extends Component {
           type="search"
           className="search-box"
           placeholder="search monsters"
-          onChange={(evt) => {
-            console.log(evt);
-          }}
+          onChange={onSearchChange}
         />
-        {this.state.monsters.map((monster) => {
+        {filteredMonsters.map((monster) => {
           return (
             <div key={monster.id}>
               <h2>{monster.name}</h2>
